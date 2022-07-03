@@ -26,7 +26,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nvar __WE
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createGrid\": () => (/* binding */ createGrid)\n/* harmony export */ });\nconst createGrid = (x, y, container) => {\n    let arrY = new Array();\n    let arrX;\n\n    for(let iy = 0; iy < y; iy++) {\n        arrX = new Array();\n        for(let ix = 0; ix < x; ix++) {\n            arrX[ix] = '<div class=\"cell\">&nbsp;</div>';\n        };\n        arrY[iy] = '<div class=\"row\">'+ arrX.join('\\r\\n') + '</div>'\n    }\n    container.innerHTML = arrY.join('\\r\\n');\n};\n\n//# sourceURL=webpack://battleship/./src/createGrid.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createGrid\": () => (/* binding */ createGrid)\n/* harmony export */ });\nconst createGrid = (container) => {\n    let arrY = new Array();\n    let arrX;\n\n    for(let iy = 0; iy < 10; iy++) {\n        arrX = new Array();\n        for(let ix = 0; ix < 10; ix++) {\n            arrX[ix] = `<div class=\"cell\" data=${iy}${ix}>${iy}${ix}</div>`;                 \n        };\n        arrY[iy] = '<div class=\"row\">'+ arrX.join('\\r\\n') + '</div>'\n    }\n    container.innerHTML = arrY.join('\\r\\n');\n};\n\n//# sourceURL=webpack://battleship/./src/createGrid.js?");
 
 /***/ }),
 
@@ -37,7 +37,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _createGrid_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createGrid.js */ \"./src/createGrid.js\");\n\n\nconst playerGrid = document.getElementById('playerGrid');\nconst compGrid = document.getElementById('compGrid');\n\n\n\n(0,_createGrid_js__WEBPACK_IMPORTED_MODULE_1__.createGrid)(10, 10, playerGrid);\n(0,_createGrid_js__WEBPACK_IMPORTED_MODULE_1__.createGrid)(10, 10, compGrid)\n\n//# sourceURL=webpack://battleship/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _createGrid_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createGrid.js */ \"./src/createGrid.js\");\n\n\nconst playerGrid = document.getElementById('playerGrid');\nconst compGrid = document.getElementById('compGrid');\n\n\n\n(0,_createGrid_js__WEBPACK_IMPORTED_MODULE_1__.createGrid)(playerGrid);\n(0,_createGrid_js__WEBPACK_IMPORTED_MODULE_1__.createGrid)(compGrid)\n\n//# sourceURL=webpack://battleship/./src/index.js?");
 
 /***/ })
 

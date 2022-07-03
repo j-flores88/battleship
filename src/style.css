@@ -4,14 +4,13 @@
     font-size: x-small;
     padding: 1em;
     text-align: center;
-    width: 15px;
-    height: 15px;
+    width: 1vw;
+    height: 1vw;
 }
 
 .row {
     display: table-row;
     clear: both;
-    overflow: hidden;
 }
 
 .cell:hover {
