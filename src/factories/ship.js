@@ -1,4 +1,4 @@
-export const Ship = (name, length, sunk, startCoord, vertical = false) => {
+export const Ship = (name, length, startCoord, vertical = false) => {
 
     const shipCoord = (startCoord) => {
         const shipCoord = [];
@@ -15,6 +15,6 @@ export const Ship = (name, length, sunk, startCoord, vertical = false) => {
     }
 
     return {
-        name, length, sunk, startCoord, vertical, shipCoord
+        name, length, startCoord, vertical, shipCoord
     }
 };
