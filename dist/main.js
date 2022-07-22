@@ -19,14 +19,25 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nvar __WE
 
 /***/ }),
 
-/***/ "./src/createGrid.js":
-/*!***************************!*\
-  !*** ./src/createGrid.js ***!
-  \***************************/
+/***/ "./src/factories/gameboard.js":
+/*!************************************!*\
+  !*** ./src/factories/gameboard.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createGrid\": () => (/* binding */ createGrid)\n/* harmony export */ });\nconst createGrid = (container) => {\n    let arrY = new Array();\n    let arrX;\n\n    for(let iy = 0; iy < 10; iy++) {\n        arrX = new Array();\n        for(let ix = 0; ix < 10; ix++) {\n            arrX[ix] = `<div class=\"cell\" data=${iy}${ix}>${iy}${ix}</div>`;                 \n        };\n        arrY[iy] = '<div class=\"row\">'+ arrX.join('\\r\\n') + '</div>'\n    }\n    container.innerHTML = arrY.join('\\r\\n');\n};\n\n//# sourceURL=webpack://battleship/./src/createGrid.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Gameboard\": () => (/* binding */ Gameboard)\n/* harmony export */ });\n/* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ship */ \"./src/factories/ship.js\");\n\n\nconst Gameboard = () => {\n\n    const createGrid = (container) => {\n        let arrY = new Array();\n        let arrX;\n    \n        for(let iy = 0; iy < 10; iy++) {\n            arrX = new Array();\n            for(let ix = 0; ix < 10; ix++) {\n                arrX[ix] = `<div class=\"cell\" data=${iy}${ix}>${iy}${ix}</div>`;\n                \n            };\n            arrY[iy] = '<div class=\"row\">'+ arrX.join('\\r\\n') + '</div>'\n        }\n        container.innerHTML = arrY.join('\\r\\n');\n        console.log(arrY[0])\n    };\n\n    return {\n        createGrid\n    }\n};\n\n//# sourceURL=webpack://battleship/./src/factories/gameboard.js?");
+
+/***/ }),
+
+/***/ "./src/factories/ship.js":
+/*!*******************************!*\
+  !*** ./src/factories/ship.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Ship\": () => (/* binding */ Ship)\n/* harmony export */ });\nconst Ship = (name, length, startCoord, vertical = false) => {\n    const shipCoords = [];\n\n    const setCoords = (startCoord) => {\n        if(vertical) {\n            for(let i = 0; i < length; i++) {\n                shipCoords.push(startCoord + i * 10);\n            } \n        } else {\n            for(let i = 0; i < length; i++) {\n                shipCoords.push(startCoord + i);\n            }\n        }\n        return shipCoords;\n    }\n\n    const hit = (coord) => {\n        for(let [index, coords] of shipCoords.entries()) {\n            if(coord === coords) {\n                shipCoords[index] = 'x';\n            }\n        }\n        return shipCoords;\n    };\n\n    const isSunk = () => shipCoords.every(e => e === 'x');\n\n    setCoords(startCoord);\n\n    return {\n        name, length, startCoord, vertical, shipCoords, setCoords, hit, isSunk\n    }\n};\n\n//# sourceURL=webpack://battleship/./src/factories/ship.js?");
 
 /***/ }),
 
@@ -37,7 +48,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _createGrid_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createGrid.js */ \"./src/createGrid.js\");\n\n\nconst playerGrid = document.getElementById('playerGrid');\nconst compGrid = document.getElementById('compGrid');\n\n\n\n(0,_createGrid_js__WEBPACK_IMPORTED_MODULE_1__.createGrid)(playerGrid);\n(0,_createGrid_js__WEBPACK_IMPORTED_MODULE_1__.createGrid)(compGrid)\n\n//# sourceURL=webpack://battleship/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _factories_gameboard_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./factories/gameboard.js */ \"./src/factories/gameboard.js\");\n\n\n\nconst playerGrid = document.getElementById('playerGrid');\nconst compGrid = document.getElementById('compGrid');\n\nconst playerBoard = (0,_factories_gameboard_js__WEBPACK_IMPORTED_MODULE_1__.Gameboard)();\nconst compBoard = (0,_factories_gameboard_js__WEBPACK_IMPORTED_MODULE_1__.Gameboard)();\n\nplayerBoard.createGrid(playerGrid);\ncompBoard.createGrid(compGrid);\n\n//# sourceURL=webpack://battleship/./src/index.js?");
 
 /***/ })
 

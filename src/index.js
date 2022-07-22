@@ -1,9 +1,11 @@
-import _ from 'lodash'
+import _, { compact } from 'lodash';
+import { Gameboard } from './factories/gameboard.js';
 
 const playerGrid = document.getElementById('playerGrid');
 const compGrid = document.getElementById('compGrid');
 
-import { createGrid } from './createGrid.js';
+const playerBoard = Gameboard();
+const compBoard = Gameboard();
 
-createGrid(playerGrid);
-createGrid(compGrid)
+playerBoard.createGrid(playerGrid);
+compBoard.createGrid(compGrid);
